@@ -1,7 +1,8 @@
 <template>
     <button type="button" class="d-flex justify-content-center align-items-center btn" :class="buttonColor">
         <img v-if="imageSource" :src="`/img/${imageSource}`" :alt=alternateText>
-        {{buttonText}}
+        <span v-if="imageSource" class="ms-2">{{buttonText}}</span>
+        <span v-else>{{buttonText}}</span>
     </button>
 </template>
 
@@ -14,7 +15,7 @@ export default {
         alternateText: String,
         buttonText: {
             type: String,
-            default: "Submit"
+            default: ""
         }
     }
 

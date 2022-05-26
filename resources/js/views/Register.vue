@@ -13,7 +13,7 @@
                 />
             </div>
             <div class="container my-2 d-flex justify-content-center align-items-center my-3">
-                <Button button-color="bg-success" button-text="Submit"/>
+                <Button class="btn-lg" button-color="bg-success" button-text="Submit"/>
             </div>
         </div>
     </form>

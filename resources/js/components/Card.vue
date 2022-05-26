@@ -27,8 +27,8 @@
             </li>
         </ul>
         <div class="card-body container-fluid d-flex justify-content-center align-items-center">
-            <Button button-color="bg-warning" image-source="edit.svg" alternate-text="Edit" class="mx-3 px-3 py-2"/>
-            <Button button-color="bg-danger" image-source="delete.svg" alternate-text="Delete" class="mx-3 px-3 py-2"/>
+            <Button button-text="Edit" button-color="bg-warning" image-source="edit.svg" alternate-text="Edit" class="mx-3 px-3 py-2"/>
+            <Button button-text="Delete" button-color="bg-danger" image-source="delete.svg" alternate-text="Delete" class="mx-3 px-3 py-2"/>
         </div>
     </div>
 </template>
