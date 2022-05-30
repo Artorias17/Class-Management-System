@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function PHPUnit\Framework\isNull;
 
 class StudentController extends Controller
 {
@@ -87,15 +88,16 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::with("tuition")->where("is_teacher", false)->find($id);
-        if($user->isEmpty()) return response(["message" => "Object not found"]);
+        if(User::with("tuition")->where("is_teacher", false)->exists()){
+            $user = User::with("tuition")->where("is_teacher", false)->find($id);
+            $user->tuition->map(function ($item){
+                $item->delete();
+            });
 
-        $user->tuition->map(function ($item){
-            $item->delete();
-        });
-
-        $user->delete();
-
-        return response(["message" => "OK"]);
+            $user->delete();
+            return response(["message" => "OK"]);
+        }else{
+            return response(["message" => "Object not found"], 404);
+        }
     }
 }

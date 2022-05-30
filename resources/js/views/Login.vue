@@ -3,7 +3,7 @@
     <div class="container-md px-5 pt-5 pb-3">
         <h1 class="text-light">Login</h1>
     </div>
-    <form action="#" @submit.prevent="loginHandler()" class="container-md px-5 py-2">
+    <form @submit.prevent="loginHandler()" class="container-md px-5 py-2">
         <div class="form-control bg-dark bg-opacity-75 text-light w-50">
             <div class="container my-2" v-for="fieldData in formFields">
                 <FormInput :input-field-type="fieldData.inputFieldType"
@@ -34,22 +34,31 @@ export default {
                     inputFieldValue: "",
                     labelContent: "Email",
                     placeholderContent: "Enter your email here",
-                    formEmail: "",
                 },
                 {
                     inputFieldType: "password",
                     inputFieldValue: "",
                     labelContent: "Password",
                     placeholderContent: "Enter your password here",
-                    formPassword: "",
                 }
             ]
         }
     },
 
     methods: {
-        loginHandler() {
-            alert("Hello")
+        async loginHandler() {
+            let loginCredentials = {email: this.formFields[0].inputFieldValue, password: this.formFields[1].inputFieldValue}
+            await axios.get("sanctum/csrf-cookie")
+                .then(res => {
+                    console.log(res)
+                    axios.post("api/login", loginCredentials)
+                        .then(res => {
+                            console.log(res)
+                        })
+                })
+                .catch(err => {
+                    console.log(err.response)
+                })
         }
     }
 }

@@ -12,22 +12,26 @@ const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home
+        component: Home,
+        meta: {requiresAuth: true}
     },
     {
         path: "/student/:studentID",
         name: "StudentDetails",
-        component: StudentDetails
+        component: StudentDetails,
+        meta: {requiresAuth: true}
     },
     {
         path: "/edit-student/:studentID",
         name: "EditStudent",
-        component: EditStudent
+        component: EditStudent,
+        meta: {requiresAuth: true}
     },
     {
         path: "/add-student",
         name: "AddStudent",
-        component: AddStudent
+        component: AddStudent,
+        meta: {requiresAuth: true}
     },
     {
         path: "/:pathMatch(.*)*",
@@ -37,12 +41,14 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        component: Login
+        component: Login,
+        meta: {requiresAuth: false}
     },
     {
         path: "/register",
         name: "Register",
-        component: Register
+        component: Register,
+        meta: {requiresAuth: false}
     }
 ]
 
@@ -50,5 +56,22 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
+
+router.beforeEach(async (to, from) => {
+    const isLoggedIn = await auth();
+    if(to.meta.requiresAuth && !isLoggedIn){
+        return {name: "Login"}
+    }else if(!to.meta.requiresAuth && isLoggedIn){
+        return {name: "Home"}
+    }
+});
+
+//api call works. Adjusting UI components
+const auth = async () => {
+    // return await axios.get("/api/user-status")
+    //     .then(() => true)
+    //     .catch(() => false)
+    return true
+}
 
 export default router

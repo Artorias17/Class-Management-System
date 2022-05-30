@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <div class="container-md px-5 py-2">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-primary sticky-top">
+        <div class="container-md px-5 py-lg-0 py-md-2">
             <router-link class="navbar-brand mx-5" to="/">Class Management System</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,25 +13,40 @@
                 </ul>
                 <form v-if="showSearch" class="d-flex" role="search" @submit.prevent="$emit('doSearch', searchTerm)">
                     <input class="form-control me-2" type="search" placeholder="Search for student" aria-label="Search" v-model="searchTerm">
-                    <button class="btn btn-success" type="submit">Search</button>
+                    <Button class="mx-3 px-3 py-2 fw-bold" type="submit" :alternate-text="'search'" :button-color="'bg-success'" :button-text="'Search'" :image-source="'search.svg'"/>
                 </form>
+                <div v-if="true" class="d-lg-flex justify-content-center align-items-center">
+                    <Button @click="logout" class="mx-3 px-3 py-2 fw-bold" :image-source="`logout.svg`" :button-text="`Logout`" :button-color="`bg-danger`" :alternate-text="`Logout`" />
+                </div>
             </div>
+
         </div>
     </nav>
 </template>
 
 <script>
+import Button from "./Button";
 export default {
     name: "Navbar",
+    components: {Button},
     props : {
         showAddStudent: Boolean,
-        showSearch: Boolean
+        showSearch: Boolean,
+        showLogout: Boolean
     },
     data() {
         return{
             searchTerm: ""
         }
     },
-    emits: ["doSearch"]
+    emits: ["doSearch"],
+
+    methods: {
+        async logout() {
+            await axios.post("/api/logout").then((res) => {
+                console.log(res)
+            })
+        }
+    }
 }
 </script>
