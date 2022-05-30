@@ -31,6 +31,11 @@ class TuitionSeeder extends Seeder
                 "user_id" => "2",
                 "created_at" => now()->subMonth(2),
                 "updated_at" => now()->subMonth(2)
+            ],
+            [
+                "user_id" => "4",
+                "created_at" => now(),
+                "updated_at" => now()
             ]
         ];
 

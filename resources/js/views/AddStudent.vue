@@ -3,7 +3,7 @@
     <div class="container-md px-5 pt-5 pb-3">
         <h1 class="text-light">Add Student</h1>
     </div>
-    <Form :form-fields="arr"/>
+    <Form :form-fields="arr" @submitForm="addData"/>
 </template>
 
 <script>
@@ -42,10 +42,26 @@ export default {
                 },
             ]
         }
+    },
+    methods: {
+        async addData() {
+            let reply = await axios.post(`/api/student`,
+                {
+                    first_name: this.arr[0].inputFieldValue,
+                    last_name: this.arr[1].inputFieldValue,
+                    email: this.arr[2].inputFieldValue,
+                    mobile_number: this.arr[3].inputFieldValue
+                })
+                .then((response) => response.status)
+                .catch((response) => response.status)
+
+            if(reply === 200){
+                alert("Added Successfully")
+                await this.$router.push("/")
+            }else{
+                alert("Couldn't Add")
+            }
+        }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

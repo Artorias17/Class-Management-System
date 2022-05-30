@@ -13,7 +13,16 @@ class Tuition extends Model
     protected $fillable = ["user_id"];
 
     public function user() {
-        $this->belongsTo("User");
+        $this->belongsTo(User::class);
     }
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'created_at' => 'date:Y-m-d'
+    ];
 
 }

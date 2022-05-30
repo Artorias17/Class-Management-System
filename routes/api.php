@@ -19,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-Route::resource("user", \App\Http\Controllers\api\UserController::class);
+Route::resource("student", \App\Http\Controllers\api\StudentController::class)->except(["create", "edit"]);
+Route::resource("teacher", \App\Http\Controllers\api\TeacherController::class)->except(["create", "edit"]);

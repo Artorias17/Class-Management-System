@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-md px-5 py-2">
-            <router-link to="/" class="navbar-brand mx-5" href="#">Class Management System</router-link>
+            <a class="navbar-brand mx-5" :href="$router.resolve({name: 'Home'}).href">Class Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -11,8 +11,8 @@
                         <router-link to="/add-student" class="nav-link active" aria-current="page" href="#">Add Student</router-link>
                     </li>
                 </ul>
-                <form v-if="showSearch" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search for student" aria-label="Search">
+                <form v-if="showSearch" class="d-flex" role="search" @submit.prevent="$emit('doSearch', searchTerm)">
+                    <input class="form-control me-2" type="search" placeholder="Search for student" aria-label="Search" v-model="searchTerm">
                     <button class="btn btn-success" type="submit">Search</button>
                 </form>
             </div>
@@ -26,6 +26,12 @@ export default {
     props : {
         showAddStudent: Boolean,
         showSearch: Boolean
-    }
+    },
+    data() {
+        return{
+            searchTerm: ""
+        }
+    },
+    emits: ["doSearch"]
 }
 </script>

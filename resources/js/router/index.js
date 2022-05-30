@@ -5,6 +5,7 @@ import Home from "../views/Home";
 import PageNotFound from "../views/PageNotFound";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import StudentDetails from "../views/StudentDetails";
 
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home
+    },
+    {
+        path: "/student/:studentID",
+        name: "StudentDetails",
+        component: StudentDetails
     },
     {
         path: "/edit-student/:studentID",
