@@ -1,6 +1,6 @@
 <template>
-    <Navbar show-logout show-search show-add-student @doSearch="sendSearchToContainer"/>
-    <CardContainer :search="cardFilterTerm" />
+    <Navbar show-logout show-add-student/>
+    <CardContainer />
 </template>
 
 <script>
@@ -9,16 +9,6 @@ import Navbar from "../components/Navbar";
 export default {
     name: "Home",
     components: {CardContainer, Navbar},
-    data() {
-        return{
-            cardFilterTerm: ""
-        }
-    },
-    methods: {
-        sendSearchToContainer(searchTerm) {
-            this.cardFilterTerm = searchTerm
-        }
-    }
 
 }
 </script>

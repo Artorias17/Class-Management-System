@@ -26,4 +26,8 @@ export default {
 img{
     width: 1.2rem;
 }
+
+span {
+    white-space: nowrap
+}
 </style>

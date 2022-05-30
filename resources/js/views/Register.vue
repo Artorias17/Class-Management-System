@@ -12,10 +12,10 @@
                            :placeholder-content="fieldData.placeholderContent"
                 />
             </div>
-            <div class="container my-2 d-flex justify-content-center align-items-center my-3">
+            <div class="container d-flex justify-content-center align-items-center">
                 <Button class="btn-lg" button-color="bg-success" button-text="Submit"/>
             </div>
-            <div class="container my-2 d-flex justify-content-center align-items-center mt-5 mb-3">
+            <div class="container my-3 d-flex justify-content-center align-items-center">
                 <h5>Already have an account? <span><RouterLink class="link-primary" to="/login">Login</RouterLink></span></h5>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
     <label class="container-fluid form-label">{{labelContent}}
-        <input :type="inputFieldType" class="form-control mt-3 bg-dark bg-opacity-25 text-light"
+        <input :type="inputFieldType" class="form-control my-3 bg-dark bg-opacity-25 text-light"
                :placeholder="placeholderContent" :value="inputFieldValue"
                @input="bubbleUpEvent"
         >
