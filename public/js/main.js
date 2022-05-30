@@ -20002,8 +20002,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var filteredCards = null;
 
       if (filterText === "paid" || filterText === "due") {
-        console.log(filterText);
-        return this.cardContent;
+        filterText = filterText === "paid";
+        filteredCards = this.cardContent.filter(function (item) {
+          return item["allPaid"] === filterText;
+        });
+        this.cardSearchResult = filteredCards.length;
+        return filteredCards;
       } else {
         filteredCards = this.cardContent.filter(function (item) {
           return item["first_name"].trim().toLowerCase().includes(filterText) || item["last_name"].trim().toLowerCase().includes(filterText);

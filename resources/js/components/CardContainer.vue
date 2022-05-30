@@ -68,8 +68,10 @@ export default {
             let filterText = this.search.trim().toLowerCase()
             let filteredCards = null
             if(filterText === "paid" || filterText === "due"){
-                console.log(filterText)
-                return this.cardContent
+                filterText = filterText === "paid"
+                filteredCards = this.cardContent.filter((item) => (item["allPaid"]=== filterText))
+                this.cardSearchResult = filteredCards.length
+                return filteredCards
             }else{
                 filteredCards = this.cardContent.filter((item) => (
                     item["first_name"].trim().toLowerCase().includes(filterText) ||
