@@ -13,7 +13,7 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
-        meta: {requiresAuth: true}
+        meta: {requiresAuth: true},
     },
     {
         path: "/student/:studentID",
@@ -58,20 +58,18 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
-    const isLoggedIn = await auth();
-    if(to.meta.requiresAuth && !isLoggedIn){
+    if(to.meta.requiresAuth && !await auth()){
         return {name: "Login"}
-    }else if(!to.meta.requiresAuth && isLoggedIn){
+    }else if(!to.meta.requiresAuth && await auth()){
         return {name: "Home"}
     }
 });
 
 //api call works. Adjusting UI components
 const auth = async () => {
-    // return await axios.get("/api/user-status")
-    //     .then(() => true)
-    //     .catch(() => false)
-    return true
+    return (await axios.get("/api/user-status", {validateStatus: (status) => !(status === 401)})
+        .then(() => true)
+        .catch(() => false))
 }
 
 export default router

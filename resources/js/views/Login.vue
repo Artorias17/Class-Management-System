@@ -15,6 +15,9 @@
             <div class="container my-2 d-flex justify-content-center align-items-center my-3">
                 <Button type="submit" class="btn-lg" button-color="bg-success" button-text="Submit"/>
             </div>
+            <div class="container my-2 d-flex justify-content-center align-items-center mt-5 mb-3">
+                <h5>Don't have an account? <span><RouterLink class="link-primary" to="/register">Register</RouterLink></span></h5>
+            </div>
         </div>
     </form>
 </template>
@@ -48,17 +51,14 @@ export default {
     methods: {
         async loginHandler() {
             let loginCredentials = {email: this.formFields[0].inputFieldValue, password: this.formFields[1].inputFieldValue}
+
             await axios.get("sanctum/csrf-cookie")
-                .then(res => {
-                    console.log(res)
+                .then(() => {
                     axios.post("api/login", loginCredentials)
-                        .then(res => {
-                            console.log(res)
-                        })
+                        .then(() => this.$router.push("/"))
+                        .catch(err => console.log(err))
                 })
-                .catch(err => {
-                    console.log(err.response)
-                })
+                .catch(err => console.log(err))
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <Navbar/>
+    <Navbar show-logout/>
     <div class="container-md px-5 pt-5 pb-3">
         <h1 class="text-light">Add Student</h1>
     </div>

@@ -14,19 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function () {
-//
-//});
-
-//Private Routes  Works......
-//Route::middleware("auth:sanctum")->resource("student", \App\Http\Controllers\api\StudentController::class)->except(["create", "edit"]);
-//Route::middleware("auth:sanctum")->resource("teacher", \App\Http\Controllers\api\TeacherController::class)->except(["create", "edit"]);
-
-//For testing purposes
-Route::resource("student", \App\Http\Controllers\api\StudentController::class)->except(["create", "edit"]);
-Route::resource("teacher", \App\Http\Controllers\api\TeacherController::class)->except(["create", "edit"]);
 
 //Public API Routes
 Route::post("login", [\App\Http\Controllers\api\LoginController::class, "login"]);
-Route::post("logout", [\App\Http\Controllers\api\LoginController::class, "logout"]);
 Route::get("user-status", [\App\Http\Controllers\api\LoginController::class, "check"]);
+
+
+//Private Routes
+Route::middleware("auth:sanctum")->resource("student", \App\Http\Controllers\api\StudentController::class)->except(["create", "edit"]);
+Route::middleware("auth:sanctum")->resource("teacher", \App\Http\Controllers\api\TeacherController::class)->except(["create", "edit"]);
+Route::middleware("auth:sanctum")->post("logout", [\App\Http\Controllers\api\LoginController::class, "logout"]);
+
+////For testing purposes
+//Route::resource("student", \App\Http\Controllers\api\StudentController::class)->except(["create", "edit"]);
+//Route::resource("teacher", \App\Http\Controllers\api\TeacherController::class)->except(["create", "edit"]);

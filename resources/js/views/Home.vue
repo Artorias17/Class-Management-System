@@ -1,5 +1,5 @@
 <template>
-    <Navbar show-search show-add-student @doSearch="sendSearchToContainer"/>
+    <Navbar show-logout show-search show-add-student @doSearch="sendSearchToContainer"/>
     <CardContainer :search="cardFilterTerm" />
 </template>
 

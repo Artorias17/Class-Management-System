@@ -15,7 +15,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search for student" aria-label="Search" v-model="searchTerm">
                     <Button class="mx-3 px-3 py-2 fw-bold" type="submit" :alternate-text="'search'" :button-color="'bg-success'" :button-text="'Search'" :image-source="'search.svg'"/>
                 </form>
-                <div v-if="true" class="d-lg-flex justify-content-center align-items-center">
+                <div v-if="showLogout" class="d-lg-flex justify-content-center align-items-center ms-auto">
                     <Button @click="logout" class="mx-3 px-3 py-2 fw-bold" :image-source="`logout.svg`" :button-text="`Logout`" :button-color="`bg-danger`" :alternate-text="`Logout`" />
                 </div>
             </div>
@@ -44,7 +44,7 @@ export default {
     methods: {
         async logout() {
             await axios.post("/api/logout").then((res) => {
-                console.log(res)
+                this.$router.push("/login");
             })
         }
     }

@@ -20126,6 +20126,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   emits: ["doSearch"],
   methods: {
     logout: function logout() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
@@ -20133,7 +20135,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.post("/api/logout").then(function (res) {
-                  console.log(res);
+                  _this.$router.push("/login");
                 });
 
               case 2:
@@ -20491,13 +20493,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   password: _this.formFields[1].inputFieldValue
                 };
                 _context.next = 3;
-                return axios.get("sanctum/csrf-cookie").then(function (res) {
-                  console.log(res);
-                  axios.post("api/login", loginCredentials).then(function (res) {
-                    console.log(res);
+                return axios.get("sanctum/csrf-cookie").then(function () {
+                  axios.post("api/login", loginCredentials).then(function () {
+                    return _this.$router.push("/");
+                  })["catch"](function (err) {
+                    return console.log(err);
                   });
                 })["catch"](function (err) {
-                  console.log(err.response);
+                  return console.log(err);
                 });
 
               case 3:
@@ -20591,6 +20594,11 @@ __webpack_require__.r(__webpack_exports__);
         inputFieldValue: "",
         labelContent: "Password",
         placeholderContent: "Enter your password here"
+      }, {
+        inputFieldType: "password",
+        inputFieldValue: "",
+        labelContent: "Confirm Password",
+        placeholderContent: "Enter your password here again"
       }]
     };
   }
@@ -21120,7 +21128,7 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_9 = {
   key: 2,
-  "class": "d-lg-flex justify-content-center align-items-center"
+  "class": "d-lg-flex justify-content-center align-items-center ms-auto"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -21177,7 +21185,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["image-source"])], 32
   /* HYDRATE_EVENTS */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),  true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.showLogout ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     onClick: $options.logout,
     "class": "mx-3 px-3 py-2 fw-bold",
     "image-source": "logout.svg",
@@ -21186,7 +21194,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "alternate-text": "Logout"
   }, null, 8
   /* PROPS */
-  , ["onClick", "image-source"])])) : 0])])]);
+  , ["onClick", "image-source"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
 }
 
 /***/ }),
@@ -21218,7 +21226,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Form");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Form, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
+    "show-logout": ""
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Form, {
     "form-fields": $data.arr,
     onSubmitForm: $options.addData
   }, null, 8
@@ -21258,6 +21268,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Form");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
+    "show-logout": "",
     "show-add-student": ""
   }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Form, {
     "form-fields": $data.arr,
@@ -21290,6 +21301,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CardContainer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CardContainer");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
+    "show-logout": "",
     "show-search": "",
     "show-add-student": "",
     onDoSearch: $options.sendSearchToContainer
@@ -21337,12 +21349,22 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "container my-2 d-flex justify-content-center align-items-center my-3"
 };
+var _hoisted_5 = {
+  "class": "container my-2 d-flex justify-content-center align-items-center mt-5 mb-3"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Don't have an account? ");
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Navbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navbar");
 
   var _component_FormInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormInput");
 
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+
+  var _component_RouterLink = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RouterLink");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -21368,7 +21390,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn-lg",
     "button-color": "bg-success",
     "button-text": "Submit"
-  })])])], 32
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RouterLink, {
+    "class": "link-primary",
+    to: "/register"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_7];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])])])])], 32
   /* HYDRATE_EVENTS */
   )], 64
   /* STABLE_FRAGMENT */
@@ -21459,12 +21491,22 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "container my-2 d-flex justify-content-center align-items-center my-3"
 };
+var _hoisted_6 = {
+  "class": "container my-2 d-flex justify-content-center align-items-center mt-5 mb-3"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Already have an account? ");
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Navbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navbar");
 
   var _component_FormInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormInput");
 
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+
+  var _component_RouterLink = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RouterLink");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.formFields, function (fieldData) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormInput, {
@@ -21484,7 +21526,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn-lg",
     "button-color": "bg-success",
     "button-text": "Submit"
-  })])])])], 64
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RouterLink, {
+    "class": "link-primary",
+    to: "/login"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -21641,6 +21693,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Navbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navbar");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
+    "show-logout": "",
     "show-add-student": ""
   }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.details["first_name"]), 1
   /* TEXT */
@@ -21826,19 +21879,26 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createRouter)({
 });
 router.beforeEach( /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(to, from) {
-    var isLoggedIn;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.t0 = to.meta.requiresAuth;
+
+            if (!_context.t0) {
+              _context.next = 5;
+              break;
+            }
+
+            _context.next = 4;
             return auth();
 
-          case 2:
-            isLoggedIn = _context.sent;
+          case 4:
+            _context.t0 = !_context.sent;
 
-            if (!(to.meta.requiresAuth && !isLoggedIn)) {
-              _context.next = 7;
+          case 5:
+            if (!_context.t0) {
+              _context.next = 9;
               break;
             }
 
@@ -21846,9 +21906,23 @@ router.beforeEach( /*#__PURE__*/function () {
               name: "Login"
             });
 
-          case 7:
-            if (!(!to.meta.requiresAuth && isLoggedIn)) {
-              _context.next = 9;
+          case 9:
+            _context.t1 = !to.meta.requiresAuth;
+
+            if (!_context.t1) {
+              _context.next = 14;
+              break;
+            }
+
+            _context.next = 13;
+            return auth();
+
+          case 13:
+            _context.t1 = _context.sent;
+
+          case 14:
+            if (!_context.t1) {
+              _context.next = 16;
               break;
             }
 
@@ -21856,7 +21930,7 @@ router.beforeEach( /*#__PURE__*/function () {
               name: "Home"
             });
 
-          case 9:
+          case 16:
           case "end":
             return _context.stop();
         }
@@ -21875,9 +21949,21 @@ var auth = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            return _context2.abrupt("return", true);
+            _context2.next = 2;
+            return axios.get("/api/user-status", {
+              validateStatus: function validateStatus(status) {
+                return !(status === 401);
+              }
+            }).then(function () {
+              return true;
+            })["catch"](function () {
+              return false;
+            });
 
-          case 1:
+          case 2:
+            return _context2.abrupt("return", _context2.sent);
+
+          case 3:
           case "end":
             return _context2.stop();
         }

@@ -15,6 +15,9 @@
             <div class="container my-2 d-flex justify-content-center align-items-center my-3">
                 <Button class="btn-lg" button-color="bg-success" button-text="Submit"/>
             </div>
+            <div class="container my-2 d-flex justify-content-center align-items-center mt-5 mb-3">
+                <h5>Already have an account? <span><RouterLink class="link-primary" to="/login">Login</RouterLink></span></h5>
+            </div>
         </div>
     </form>
 </template>
@@ -52,6 +55,12 @@ export default {
                     inputFieldValue: "",
                     labelContent: "Password",
                     placeholderContent: "Enter your password here",
+                },
+                {
+                    inputFieldType: "password",
+                    inputFieldValue: "",
+                    labelContent: "Confirm Password",
+                    placeholderContent: "Enter your password here again",
                 }
             ]
         }

@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response(["message" => "OK"]);
         }else{
-            throw ValidationException::withMessages(["message" => "Data is invalid"]);
+            throw ValidationException::withMessages(["message" => "Credentials are invalid"]);
         }
     }
 

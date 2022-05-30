@@ -1,5 +1,5 @@
 <template>
-    <Navbar show-add-student/>
+    <Navbar show-logout show-add-student/>
     <div class="container-md px-5 pt-5 pb-3">
         <h1 class="text-light">Student Details</h1>
     </div>
