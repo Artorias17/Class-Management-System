@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-md px-5 py-2">
-            <a class="navbar-brand mx-5" :href="$router.resolve({name: 'Home'}).href">Class Management System</a>
+            <router-link class="navbar-brand mx-5" to="/">Class Management System</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
