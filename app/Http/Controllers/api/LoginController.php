@@ -27,19 +27,22 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response(["message" => "OK"]);
         }else{
-            throw ValidationException::withMessages(["message" => "Credentials are invalid"]);
+            throw ValidationException::withMessages(["You are not worthy"]);
         }
     }
 
     public function logout(Request $request){
 
-        Auth::logout();
+        //Logout route doesn't need sanctum middleware. It can be public route.
+        //In that case Auth::logout() would have worked.
+        //However, this route is chosen to be using sanctum, thus Auth::guard('web')->logout() is used.
+        Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return response(["message: OK"]);
+        return response([]);
     }
 
     public function check(){

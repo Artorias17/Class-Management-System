@@ -3,7 +3,7 @@
     <div class="container-md px-5 pt-5 pb-3">
         <h1 class="text-light">Register</h1>
     </div>
-    <form class="container-md px-5 py-2">
+    <form @submit.prevent="doRegister" class="container-md px-5 py-2">
         <div class="form-control bg-dark bg-opacity-75 text-light w-50">
             <div class="container my-2" v-for="fieldData in formFields">
                 <FormInput :input-field-type="fieldData.inputFieldType"
@@ -13,7 +13,7 @@
                 />
             </div>
             <div class="container d-flex justify-content-center align-items-center">
-                <Button class="btn-lg" button-color="bg-success" button-text="Submit"/>
+                <Button type="submit" class="btn-lg" button-color="bg-success" button-text="Submit"/>
             </div>
             <div class="container my-3 d-flex justify-content-center align-items-center">
                 <h5>Already have an account? <span><RouterLink class="link-primary" to="/login">Login</RouterLink></span></h5>
@@ -63,6 +63,19 @@ export default {
                     placeholderContent: "Enter your password here again",
                 }
             ]
+        }
+    },
+    methods: {
+        doRegister() {
+            const payload = {
+                first_name: this.formFields[0].inputFieldValue,
+                last_name: this.formFields[1].inputFieldValue,
+                email: this.formFields[2].inputFieldValue,
+                password: this.formFields[3].inputFieldValue,
+                confirm_password: this.formFields[4].inputFieldValue
+            }
+
+            console.log(payload)
         }
     }
 }

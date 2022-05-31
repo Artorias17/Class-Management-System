@@ -29,6 +29,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "first_name" => ["string", "required"],
+            "first_name" => ["string", "required"],
+            "first_name" => ["string", "required"],
+            "first_name" => ["string", "required"],
+            "first_name" => ["string", "required"],
+        ]);
         $checkUser = User::where("email", $request->email)->get();
         if($checkUser->isEmpty()){
             $newStudent = new User([
