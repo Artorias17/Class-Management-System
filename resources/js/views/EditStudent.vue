@@ -40,7 +40,9 @@ export default {
                     inputFieldType: "tel",
                     inputFieldValue: ""
                 },
-            ]
+            ],
+            toastMsg: "",
+            toastBG: ""
         }
     },
 
@@ -61,14 +63,14 @@ export default {
                     email: this.arr[2].inputFieldValue,
                     mobile_number: this.arr[3].inputFieldValue
                 })
-                .then((response) => response.status)
-                .catch((response) => response.status)
+                .then((response) => response)
+                .catch((response) => response)
 
-            if(reply === 200){
-                alert("Updated Successfully")
-                await this.$router.replace("/")
+            if(reply.status === 200){
+                await this.$router.replace({name: "Home", params:{msg: "Student added successfully.", background: "bg-success"}})
             }else{
-                alert("Couldn't Update")
+                this.toastMsg = reply
+                this.toastBG = "bg-danger"
             }
         }
     }

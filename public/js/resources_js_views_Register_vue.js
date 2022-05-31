@@ -338,7 +338,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "image-source": 'add.svg',
     "button-text": 'Add Student',
-    "button-color": 'bg-secondary',
+    "button-color": 'bg-success',
     "alternate-text": 'Add Student'
   }, null, 8
   /* PROPS */

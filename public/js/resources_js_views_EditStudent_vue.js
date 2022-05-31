@@ -196,7 +196,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         placeholderContent: "01234567891",
         inputFieldType: "tel",
         inputFieldValue: ""
-      }]
+      }],
+      toastMsg: "",
+      toastBG: ""
     };
   },
   created: function created() {
@@ -245,29 +247,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   email: _this2.arr[2].inputFieldValue,
                   mobile_number: _this2.arr[3].inputFieldValue
                 }).then(function (response) {
-                  return response.status;
+                  return response;
                 })["catch"](function (response) {
-                  return response.status;
+                  return response;
                 });
 
               case 2:
                 reply = _context2.sent;
 
-                if (!(reply === 200)) {
-                  _context2.next = 9;
+                if (!(reply.status === 200)) {
+                  _context2.next = 8;
                   break;
                 }
 
-                alert("Updated Successfully");
-                _context2.next = 7;
-                return _this2.$router.replace("/");
+                _context2.next = 6;
+                return _this2.$router.replace({
+                  name: "Home",
+                  params: {
+                    msg: "Student added successfully.",
+                    background: "bg-success"
+                  }
+                });
 
-              case 7:
+              case 6:
                 _context2.next = 10;
                 break;
 
-              case 9:
-                alert("Couldn't Update");
+              case 8:
+                _this2.toastMsg = reply;
+                _this2.toastBG = "bg-danger";
 
               case 10:
               case "end":
@@ -498,7 +506,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "image-source": 'add.svg',
     "button-text": 'Add Student',
-    "button-color": 'bg-secondary',
+    "button-color": 'bg-success',
     "alternate-text": 'Add Student'
   }, null, 8
   /* PROPS */

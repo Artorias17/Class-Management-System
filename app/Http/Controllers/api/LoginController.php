@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response(["message" => "OK"]);
         }else{
-            throw ValidationException::withMessages(["Email or password doesn't match."]);
+            throw ValidationException::withMessages(["message" => "Email or password does not match."]);
         }
     }
 

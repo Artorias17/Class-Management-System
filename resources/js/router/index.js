@@ -19,7 +19,7 @@ const routes = [
         name: "Home",
         component: Home,
         meta: {requiresAuth: true},
-        props: {toast: ""}      // Sending toast messages by <router-link> or <router-view> or router.push
+        props: {msg: "", background: ""}      // Sending data for toast by props via <router-link> or <router-view> or router.push
     },
     {
         path: "/student/:studentID",

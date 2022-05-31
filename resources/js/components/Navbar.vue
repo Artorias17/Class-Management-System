@@ -8,7 +8,7 @@
 
             <div class="collapse navbar-collapse row mt-4 my-lg-0" id="navbarSupportedContent">
                 <div v-if="showAddStudent" class="col-6 d-flex justify-content-end justify-content-lg-start align-items-center">
-                    <Button class="mx-3 px-3 py-2 fw-bold" @click="$router.push('/add-student')" :image-source="'add.svg'" :button-text="'Add Student'" :button-color="'bg-secondary'" :alternate-text="'Add Student'"/>
+                    <Button class="mx-3 px-3 py-2 fw-bold" @click="$router.push('/add-student')" :image-source="'add.svg'" :button-text="'Add Student'" :button-color="'bg-success'" :alternate-text="'Add Student'"/>
                 </div>
                 <div v-if="showLogout" class="col-6 d-flex align-items-center justify-content-start justify-content-lg-end">
                     <Button @click="logout" class="mx-3 px-3 py-2 fw-bold" :image-source="`logout.svg`" :button-text="`Logout`" :button-color="`bg-danger`" :alternate-text="`Logout`" />
