@@ -31,11 +31,11 @@ class StudentController extends Controller
     {
         $request->validate([
             "first_name" => ["string", "required"],
-            "first_name" => ["string", "required"],
-            "first_name" => ["string", "required"],
-            "first_name" => ["string", "required"],
-            "first_name" => ["string", "required"],
+            "last_name" => ["string", "required"],
+            "email" => ["email", "required"],
+            "mobile_number" => ["regex:/(01)[0-9]{9}/", "required"],
         ]);
+
         $checkUser = User::where("email", $request->email)->get();
         if($checkUser->isEmpty()){
             $newStudent = new User([

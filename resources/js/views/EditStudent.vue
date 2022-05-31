@@ -66,7 +66,7 @@ export default {
 
             if(reply === 200){
                 alert("Updated Successfully")
-                await this.$router.push("/")
+                await this.$router.replace("/")
             }else{
                 alert("Couldn't Update")
             }

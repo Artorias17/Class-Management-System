@@ -55,7 +55,7 @@ export default {
             await axios.get("sanctum/csrf-cookie")
                 .then(() => {
                     axios.post("api/login", loginCredentials)
-                        .then(() => this.$router.push({name: "Home", replace: true}))
+                        .then(() => this.$router.replace("/"))
                         .catch(err => console.log(err))
                 })
                 .catch(err => console.log(err))

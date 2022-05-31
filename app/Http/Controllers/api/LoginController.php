@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response(["message" => "OK"]);
         }else{
-            throw ValidationException::withMessages(["You are not worthy"]);
+            throw ValidationException::withMessages(["Email or password doesn't match."]);
         }
     }
 
@@ -45,7 +45,7 @@ class LoginController extends Controller
         return response([]);
     }
 
-    public function check(){
-        return Auth::check() ? response([Auth::user()], 200): response([""], 401);
+    public function check(Request $request){
+        return Auth::check() ? response([$request], 200): response([$request], 401);
     }
 }

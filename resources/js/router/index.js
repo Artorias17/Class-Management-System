@@ -1,11 +1,16 @@
 import {createRouter, createWebHistory} from "vue-router"
-import EditStudent from "../views/EditStudent";
-import AddStudent from "../views/AddStudent";
-import Home from "../views/Home";
-import PageNotFound from "../views/PageNotFound";
-import Login from "../views/Login";
-import Register from "../views/Register";
-import StudentDetails from "../views/StudentDetails";
+
+
+
+// Lazy Loading Routes ----> https://router.vuejs.org/guide/advanced/lazy-loading.html#lazy-loading-routes
+
+const EditStudent = () => import("../views/EditStudent");
+const AddStudent = () => import("../views/AddStudent");
+const Home = () => import("../views/Home");
+const PageNotFound = () => import("../views/PageNotFound");
+const Login = () => import("../views/Login");
+const Register = () => import("../views/Register");
+const StudentDetails = () => import("../views/StudentDetails");
 
 
 const routes = [
@@ -14,6 +19,7 @@ const routes = [
         name: "Home",
         component: Home,
         meta: {requiresAuth: true},
+        props: {toast: ""}      // Sending toast messages by <router-link> or <router-view> or router.push
     },
     {
         path: "/student/:studentID",
