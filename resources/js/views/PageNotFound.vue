@@ -2,7 +2,7 @@
     <div class="container text-light d-flex flex-column justify-content-center align-items-center my-5">
         <h1 class="my-2">404</h1>
         <h2 class="my-2">Page Not Found !!!</h2>
-        <Button @click="$router.push('/')" class="my-2 btn-lg fw-semibold text-light px-3 py-2" :alternate-text="btnData.alternateText"
+        <Button @click="$router.push({name: 'Home'})" class="my-2 btn-lg fw-semibold text-light px-3 py-2" :alternate-text="btnData.alternateText"
         :button-color="btnData.buttonColor"
         :button-text="btnData.buttonText"
         :image-source="btnData.imageSource"></Button>

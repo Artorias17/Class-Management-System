@@ -21,7 +21,7 @@
                 </div>
             </div>
         </form>
-        <ToastNotification :key="failedSubmitAttempts" :message="msg" :background="msgBG"/>
+        <ToastNotification :key="failedSubmitAttempts" :message="msgData" :background="msgBG"/>
     </div>
 </template>
 
@@ -33,6 +33,10 @@ import ToastNotification from "../components/ToastNotification";
 export default {
     name: "Login",
     components: {Navbar, FormInput, Button, ToastNotification},
+    props: {
+        msg: String,
+        background: String
+    },
     data() {
         return {
             formFields: [
@@ -50,8 +54,8 @@ export default {
                 }
             ],
 
-            msg: "",
-            msgBG: "",
+            msgData: this.msg,
+            msgBG: this.background,
             failedSubmitAttempts: 0,
             show: false
         }
@@ -71,7 +75,7 @@ export default {
             if(reply.status === 200){
                 await this.$router.replace({name: "Home", params: {msg: "Welcome", background: "bg-success"}})
             }else {
-                this.msg = reply.data.message
+                this.msgData = reply.data.message
                 this.msgBG = "bg-danger"
                 this.failedSubmitAttempts++
             }

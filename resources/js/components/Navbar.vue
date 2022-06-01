@@ -31,8 +31,8 @@ export default {
 
     methods: {
         async logout() {
-            await axios.post("/api/logout").then((res) => {
-                this.$router.push("/login");
+            await axios.post("/api/logout").then(() => {
+                this.$router.push({name: "Login", params: {msg: "Logged Out", background: "bg-success"}});
             })
         }
     }

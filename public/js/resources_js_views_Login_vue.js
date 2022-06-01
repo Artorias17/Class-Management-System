@@ -96,8 +96,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post("/api/logout").then(function (res) {
-                  _this.$router.push("/login");
+                return axios.post("/api/logout").then(function () {
+                  _this.$router.push({
+                    name: "Login",
+                    params: {
+                      msg: "Logged Out",
+                      background: "bg-success"
+                    }
+                  });
                 });
 
               case 2:
@@ -192,6 +198,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Button: _components_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
     ToastNotification: _components_ToastNotification__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  props: {
+    msg: String,
+    background: String
+  },
   data: function data() {
     return {
       formFields: [{
@@ -205,8 +215,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labelContent: "Password",
         placeholderContent: "Enter your password here"
       }],
-      msg: "",
-      msgBG: "",
+      msgData: this.msg,
+      msgBG: this.background,
       failedSubmitAttempts: 0,
       show: false
     };
@@ -273,7 +283,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
 
               case 9:
-                _this.msg = reply.data.message;
+                _this.msgData = reply.data.message;
                 _this.msgBG = "bg-danger";
                 _this.failedSubmitAttempts++;
 
@@ -606,7 +616,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS */
   ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ToastNotification, {
     key: $data.failedSubmitAttempts,
-    message: $data.msg,
+    message: $data.msgData,
     background: $data.msgBG
   }, null, 8
   /* PROPS */
@@ -5893,7 +5903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\r\n    word-break: keep-all;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -51,7 +51,8 @@ const routes = [
         path: "/login",
         name: "Login",
         component: Login,
-        meta: {requiresAuth: false}
+        meta: {requiresAuth: false},
+        props: true
     },
     {
         path: "/register",
@@ -67,6 +68,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
+    if(to.name === "PageNotFound") return true
     if(to.meta.requiresAuth && !await auth()){
         return {name: "Login"}
     }else if(!to.meta.requiresAuth && await auth()){
