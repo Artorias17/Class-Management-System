@@ -23179,9 +23179,8 @@ var routes = [{
   meta: {
     requiresAuth: true
   },
-  props: {
-    toast: ""
-  } // Sending toast messages by <router-link> or <router-view> or router.push
+  props: true // Sending data for toast by props via <router-link> or <router-view> or router.push
+  // props can take object but that is mostly used for passing static data
 
 }, {
   path: "/student/:studentID",
@@ -23189,14 +23188,16 @@ var routes = [{
   component: StudentDetails,
   meta: {
     requiresAuth: true
-  }
+  },
+  props: true
 }, {
   path: "/edit-student/:studentID",
   name: "EditStudent",
   component: EditStudent,
   meta: {
     requiresAuth: true
-  }
+  },
+  props: true
 }, {
   path: "/add-student",
   name: "AddStudent",
@@ -23214,7 +23215,8 @@ var routes = [{
   component: Login,
   meta: {
     requiresAuth: false
-  }
+  },
+  props: true
 }, {
   path: "/register",
   name: "Register",
@@ -23233,22 +23235,30 @@ router.beforeEach( /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.t0 = to.meta.requiresAuth;
-
-            if (!_context.t0) {
-              _context.next = 5;
+            if (!(to.name === "PageNotFound")) {
+              _context.next = 2;
               break;
             }
 
-            _context.next = 4;
+            return _context.abrupt("return", true);
+
+          case 2:
+            _context.t0 = to.meta.requiresAuth;
+
+            if (!_context.t0) {
+              _context.next = 7;
+              break;
+            }
+
+            _context.next = 6;
             return auth();
 
-          case 4:
+          case 6:
             _context.t0 = !_context.sent;
 
-          case 5:
+          case 7:
             if (!_context.t0) {
-              _context.next = 9;
+              _context.next = 11;
               break;
             }
 
@@ -23256,23 +23266,23 @@ router.beforeEach( /*#__PURE__*/function () {
               name: "Login"
             });
 
-          case 9:
+          case 11:
             _context.t1 = !to.meta.requiresAuth;
 
             if (!_context.t1) {
-              _context.next = 14;
+              _context.next = 16;
               break;
             }
 
-            _context.next = 13;
+            _context.next = 15;
             return auth();
 
-          case 13:
+          case 15:
             _context.t1 = _context.sent;
 
-          case 14:
+          case 16:
             if (!_context.t1) {
-              _context.next = 16;
+              _context.next = 18;
               break;
             }
 
@@ -23280,7 +23290,7 @@ router.beforeEach( /*#__PURE__*/function () {
               name: "Home"
             });
 
-          case 16:
+          case 18:
           case "end":
             return _context.stop();
         }

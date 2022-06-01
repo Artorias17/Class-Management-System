@@ -96,8 +96,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post("/api/logout").then(function (res) {
-                  _this.$router.push("/login");
+                return axios.post("/api/logout").then(function () {
+                  _this.$router.push({
+                    name: "Login",
+                    params: {
+                      msg: "Logged Out",
+                      background: "bg-success"
+                    }
+                  });
                 });
 
               case 2:
@@ -338,7 +344,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "image-source": 'add.svg',
     "button-text": 'Add Student',
-    "button-color": 'bg-secondary',
+    "button-color": 'bg-success',
     "alternate-text": 'Add Student'
   }, null, 8
   /* PROPS */

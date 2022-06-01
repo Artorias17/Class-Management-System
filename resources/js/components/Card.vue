@@ -23,7 +23,7 @@
             </li>
         </ul>
         <div class="card-body container-fluid d-flex justify-content-center align-items-center">
-            <Button @click="$router.push(`/edit-student/${identityNumber}`)" button-text="Edit" button-color="bg-primary" image-source="edit.svg" alternate-text="Edit" class="mx-3 px-3 py-2 fw-bold"/>
+            <Button @click="$router.push({name: 'EditStudent', params: {studentID: identityNumber}})" button-text="Edit" button-color="bg-primary" image-source="edit.svg" alternate-text="Edit" class="mx-3 px-3 py-2 fw-bold"/>
             <Button @click="$emit('del')" button-text="Delete" button-color="bg-danger" image-source="delete.svg" alternate-text="Delete" class="mx-3 px-3 py-2 fw-bold"/>
         </div>
     </div>

@@ -136,7 +136,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.$router.push('/');
+      return _ctx.$router.push({
+        name: 'Home'
+      });
     }),
     "class": "my-2 btn-lg fw-semibold text-light px-3 py-2",
     "alternate-text": $data.btnData.alternateText,

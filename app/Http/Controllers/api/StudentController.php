@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNull;
+use Illuminate\Support\Facades\Validator;
+
 
 class StudentController extends Controller
 {
@@ -29,27 +31,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            "first_name" => ["string", "required"],
-            "last_name" => ["string", "required"],
-            "email" => ["email", "required"],
-            "mobile_number" => ["regex:/(01)[0-9]{9}/", "required"],
+            "email" => ["required", "email", "unique:users", "bail"],
+            "mobile_number" => ["required", "regex:/^01[0-9]{9}$/u", "bail"],
+            "first_name" => ["required", "string"],
+            "last_name" => ["required", "string"],
         ]);
 
-        $checkUser = User::where("email", $request->email)->get();
-        if($checkUser->isEmpty()){
-            $newStudent = new User([
-                "first_name" => $request->first_name,
-                "last_name" => $request->last_name,
-                "email" => $request->email,
-                "password" => Hash::make("password"),
-                "mobile_number" => $request->mobile_number
-            ]);
-            $newStudent->save();
-            return response(["message" => "OK"]);
-        }else{
-            return response(["message" => "Object conflict"]);
-        }
+        $newStudent = new User([
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "password" => Hash::make("password"),
+            "mobile_number" => $request->mobile_number
+        ]);
+        $newStudent->save();
+        return response(["message" => "OK"]);
     }
 
     /**
@@ -73,6 +71,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->id != $id) return response(["message" => "Mismatch information."], 422);
+
+        $request->validate([
+            "email" => ["required", "email", "unique:users,email,".$id, "bail"],
+            "mobile_number" => ["required", "regex:/^01[0-9]{9}$/u", "bail"],
+            "first_name" => ["required", "string"],
+            "last_name" => ["required", "string"],
+        ]);
+
         $student = User::find($id);
         if(!is_null($student)){
             $student->first_name =$request->first_name;
@@ -82,7 +89,7 @@ class StudentController extends Controller
             $student->save();
             return response(["message" => "OK"]);
         }else{
-            return response(["message" => "Object not found"], 404);
+            return response(["message" => "Nothing found to update."], 404);
         }
 
     }

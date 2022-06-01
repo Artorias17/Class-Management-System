@@ -1,18 +1,22 @@
 <template>
-    <Navbar show-logout/>
-    <div class="container-md px-5 pt-5 pb-3">
-        <h1 class="text-light">Add Student</h1>
+    <div>
+        <Navbar show-logout/>
+        <div class="container-md px-5 pt-5 pb-3">
+            <h1 class="text-light">Add Student</h1>
+        </div>
+        <Form :form-fields="arr" @submitForm="addData"/>
+        <ToastNotification :background="toastBG" :message="toastMsg" :key="failedAttempts"/>
     </div>
-    <Form :form-fields="arr" @submitForm="addData"/>
 </template>
 
 <script>
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
+import ToastNotification from "../components/ToastNotification";
 
 export default {
     name: "AddStudent",
-    components: {Form, Navbar},
+    components: {Form, Navbar, ToastNotification},
     data() {
         return {
             arr: [
@@ -40,7 +44,10 @@ export default {
                     inputFieldType: "tel",
                     inputFieldValue: ""
                 },
-            ]
+            ],
+            toastMsg: "",
+            toastBG: "",
+            failedAttempts: 0
         }
     },
     methods: {
@@ -52,14 +59,15 @@ export default {
                     email: this.arr[2].inputFieldValue,
                     mobile_number: this.arr[3].inputFieldValue
                 })
-                .then((response) => response.status)
-                .catch((response) => response.status)
+                .then((response) => response)
+                .catch((err) => err.response)
 
-            if(reply === 200){
-                alert("Added Successfully")
-                await this.$router.replace("/")
+            if(reply.status === 200){
+                await this.$router.replace({name: "Home", params:{msg: "Student added successfully.", background: "bg-success"}})
             }else{
-                alert("Couldn't Add")
+                this.toastMsg = reply.data.message
+                this.toastBG = "bg-danger"
+                this.failedAttempts++
             }
         }
     }

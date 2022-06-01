@@ -19,19 +19,22 @@ const routes = [
         name: "Home",
         component: Home,
         meta: {requiresAuth: true},
-        props: {toast: ""}      // Sending toast messages by <router-link> or <router-view> or router.push
+        props: true     // Sending data for toast by props via <router-link> or <router-view> or router.push
+        // props can take object but that is mostly used for passing static data
     },
     {
         path: "/student/:studentID",
         name: "StudentDetails",
         component: StudentDetails,
-        meta: {requiresAuth: true}
+        meta: {requiresAuth: true},
+        props: true
     },
     {
         path: "/edit-student/:studentID",
         name: "EditStudent",
         component: EditStudent,
-        meta: {requiresAuth: true}
+        meta: {requiresAuth: true},
+        props: true
     },
     {
         path: "/add-student",
@@ -48,7 +51,8 @@ const routes = [
         path: "/login",
         name: "Login",
         component: Login,
-        meta: {requiresAuth: false}
+        meta: {requiresAuth: false},
+        props: true
     },
     {
         path: "/register",
@@ -64,6 +68,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
+    if(to.name === "PageNotFound") return true
     if(to.meta.requiresAuth && !await auth()){
         return {name: "Login"}
     }else if(!to.meta.requiresAuth && await auth()){

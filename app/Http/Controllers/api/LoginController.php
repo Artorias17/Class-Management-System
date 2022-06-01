@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function login(Request $request){
 
         $credentials = $request->validate([
-            "email" => ["required", "email"],
+            "email" => ["bail", "required", "email"],
             "password" => ["required"]
         ]);
 
@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response(["message" => "OK"]);
         }else{
-            throw ValidationException::withMessages(["Email or password doesn't match."]);
+            throw ValidationException::withMessages(["message"=>"Email and/or password is incorrect."]);
         }
     }
 
@@ -42,7 +42,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return response([]);
+        return response(["message" => "Logged out."]);
     }
 
     public function check(Request $request){
