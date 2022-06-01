@@ -1,5 +1,5 @@
 <template>
-    <div ref="toastElement" class="toast end-0 position-absolute m-4 show" :class="background" role="alert" aria-live="assertive" aria-atomic="true">
+    <div ref="toastElement" class="toast end-0 position-absolute m-4" :class="background" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header px-3 d-flex justify-content-between align-items-center">
             <img src="/img/favicon.svg" width="32" alt="CMS Icon">
             <strong class="">CMS</strong>
@@ -21,23 +21,27 @@ export default {
         message: String,
         background: String
     },
-    emits: ["isVisible"],
-    mounted() {
-        if(this.message) this.display()
+
+    data() {
+        return {
+            toast: undefined
+        }
     },
 
-    // Watching is lazy. It won't work at initial prop pass, however for subsequent changes it will.
-    watch:{
-        message(newToast){
-            if(newToast) this.display()
-        }
+    // Had a really, really hard time figuring out why toast.show() doesn't show the toast
+    // after the dom has mounted  via watchers or computed props.
+    // After long ordeal came to the solution to just re-render the toast component.
+    // This is done by changing the component's key special attribute on where it is being used.
+    // https://vuejs.org/api/built-in-special-attributes.html#key
+    mounted() {
+        //getOrCreateInstance -> because Toast was already called via constructor in data
+        this.toast = new Toast(this.$refs.toastElement, {autohide: true, delay: 2500, animation: true})
+        if(this.message) this.toast.show()
+
     },
-    methods: {
-        display(){
-            // The Dom needs to be mounted first before this object can be created
-            let toaster = new Toast(this.$refs.toastElement);
-            toaster.show()
-        }
+
+    beforeUnmount() {
+        this.toast.dispose();
     }
 }
 </script>

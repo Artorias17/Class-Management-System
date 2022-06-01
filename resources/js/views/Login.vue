@@ -21,7 +21,7 @@
                 </div>
             </div>
         </form>
-        <ToastNotification @isVisible="resetToast" :message="msg" :background="msgBG"/>
+        <ToastNotification :key="failedSubmitAttempts" :message="msg" :background="msgBG"/>
     </div>
 </template>
 
@@ -51,7 +51,9 @@ export default {
             ],
 
             msg: "",
-            msgBG: ""
+            msgBG: "",
+            failedSubmitAttempts: 0,
+            show: false
         }
     },
 
@@ -61,21 +63,18 @@ export default {
 
             const reply = await axios.get("sanctum/csrf-cookie")
                 .then(async () => {
-                    return await axios.post("api/login", loginCredentials, {
-                        validateStatus: (status) => status === 200}) // Resolve only if the status code is 200
+                    // Resolve only if the status code is 200
+                    return await axios.post("api/login", loginCredentials, {validateStatus: (status) => status === 200})
                 })
                 .catch(err => err.response)
 
             if(reply.status === 200){
                 await this.$router.replace({name: "Home", params: {msg: "Welcome", background: "bg-success"}})
-            }else{
+            }else {
                 this.msg = reply.data.message
                 this.msgBG = "bg-danger"
+                this.failedSubmitAttempts++
             }
-        },
-        resetToast(){
-            this.msg = ""
-            this.msgBG = ""
         }
     }
 }

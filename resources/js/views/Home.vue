@@ -2,7 +2,7 @@
     <div>
         <Navbar show-logout show-add-student/>
         <CardContainer />
-        <ToastNotification message="Hello" background="bg-success"/>
+        <ToastNotification :message="msg" :background="background"/>
     </div>
 </template>
 
@@ -15,8 +15,8 @@ export default {
     name: "Home",
     components: {CardContainer, Navbar, ToastNotification},
     props: {
-        message: String,
-        backgroundColor: String
+        msg: String,
+        background: String,
     }
 
 }

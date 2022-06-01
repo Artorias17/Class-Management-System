@@ -132,22 +132,27 @@ __webpack_require__.r(__webpack_exports__);
     message: String,
     background: String
   },
-  emits: ["isVisible"],
+  data: function data() {
+    return {
+      toast: undefined
+    };
+  },
+  // Had a really, really hard time figuring out why toast.show() doesn't show the toast
+  // after the dom has mounted  via watchers or computed props.
+  // After long ordeal came to the solution to just re-render the toast component.
+  // This is done by changing the component's key special attribute on where it is being used.
+  // https://vuejs.org/api/built-in-special-attributes.html#key
   mounted: function mounted() {
-    if (this.message) this.display();
+    //getOrCreateInstance -> because Toast was already called via constructor in data
+    this.toast = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(this.$refs.toastElement, {
+      autohide: true,
+      delay: 2500,
+      animation: true
+    });
+    if (this.message) this.toast.show();
   },
-  // Watching is lazy. It won't work at initial prop pass, however for subsequent changes it will.
-  watch: {
-    message: function message(newToast) {
-      if (newToast) this.display();
-    }
-  },
-  methods: {
-    display: function display() {
-      // The Dom needs to be mounted first before this object can be created
-      var toaster = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(this.$refs.toastElement);
-      toaster.show();
-    }
+  beforeUnmount: function beforeUnmount() {
+    this.toast.dispose();
   }
 });
 
@@ -201,7 +206,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         placeholderContent: "Enter your password here"
       }],
       msg: "",
-      msgBG: ""
+      msgBG: "",
+      failedSubmitAttempts: 0,
+      show: false
     };
   },
   methods: {
@@ -262,24 +269,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 7:
-                _context2.next = 11;
+                _context2.next = 12;
                 break;
 
               case 9:
                 _this.msg = reply.data.message;
                 _this.msgBG = "bg-danger";
+                _this.failedSubmitAttempts++;
 
-              case 11:
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
       }))();
-    },
-    resetToast: function resetToast() {
-      this.msg = "";
-      this.msgBG = "";
     }
   }
 });
@@ -502,7 +506,7 @@ var _hoisted_2 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     ref: "toastElement",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["toast end-0 position-absolute m-4 show", $props.background]),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["toast end-0 position-absolute m-4", $props.background]),
     role: "alert",
     "aria-live": "assertive",
     "aria-atomic": "true"
@@ -600,13 +604,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })])])])])], 32
   /* HYDRATE_EVENTS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ToastNotification, {
-    onIsVisible: $options.resetToast,
+  ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ToastNotification, {
+    key: $data.failedSubmitAttempts,
     message: $data.msg,
     background: $data.msgBG
   }, null, 8
   /* PROPS */
-  , ["onIsVisible", "message", "background"])]);
+  , ["message", "background"]))]);
 }
 
 /***/ }),
@@ -5889,7 +5893,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\r\n    word-break: keep-all;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -4,14 +4,19 @@
         <h1 class="text-light">Edit Student</h1>
     </div>
     <Form :form-fields="arr" @submitForm="updateData"/>
+    <ToastNotification :background="toastBG" :message="toastMsg" :key="failedAttempts"/>
 </template>
 
 <script>
 import Navbar from "../components/Navbar";
 import Form from "../components/Form";
+import ToastNotification from "../components/ToastNotification";
 export default {
     name: "EditStudent",
-    components: {Navbar, Form},
+    components: {Navbar, Form, ToastNotification},
+    props: {
+        studentID: Number
+    },
 
     data() {
         return {
@@ -42,12 +47,16 @@ export default {
                 },
             ],
             toastMsg: "",
-            toastBG: ""
+            toastBG: "",
+            failedAttempts: 0
         }
     },
 
     async created() {
-        let apiCall = await axios.get(`/api/student/${this.$route.params.studentID}`).then(response => response.data)
+        let apiCall = await axios.get(`/api/student/${this.studentID}`)
+            .then(response => response.data)
+            .catch(async () => await this.$router.push({name: "PageNotFound"}))
+
         this.arr[0].inputFieldValue = apiCall["first_name"]
         this.arr[1].inputFieldValue = apiCall["last_name"]
         this.arr[2].inputFieldValue = apiCall["email"]
@@ -56,21 +65,23 @@ export default {
 
     methods: {
         async updateData() {
-            let reply = await axios.put(`/api/student/${this.$route.params.studentID}`,
+            let reply = await axios.put(`/api/student/${this.studentID}`,
                 {
+                    id: this.studentID,
                     first_name: this.arr[0].inputFieldValue,
                     last_name: this.arr[1].inputFieldValue,
                     email: this.arr[2].inputFieldValue,
                     mobile_number: this.arr[3].inputFieldValue
                 })
                 .then((response) => response)
-                .catch((response) => response)
+                .catch((error) => error.response)
 
             if(reply.status === 200){
-                await this.$router.replace({name: "Home", params:{msg: "Student added successfully.", background: "bg-success"}})
+                await this.$router.replace({name: "Home", params:{msg: "Student updated successfully.", background: "bg-success"}})
             }else{
-                this.toastMsg = reply
+                this.toastMsg = reply.data.message
                 this.toastBG = "bg-danger"
+                this.failedAttempts++
             }
         }
     }

@@ -23179,10 +23179,8 @@ var routes = [{
   meta: {
     requiresAuth: true
   },
-  props: {
-    msg: "",
-    background: ""
-  } // Sending data for toast by props via <router-link> or <router-view> or router.push
+  props: true // Sending data for toast by props via <router-link> or <router-view> or router.push
+  // props can take object but that is mostly used for passing static data
 
 }, {
   path: "/student/:studentID",
@@ -23190,14 +23188,16 @@ var routes = [{
   component: StudentDetails,
   meta: {
     requiresAuth: true
-  }
+  },
+  props: true
 }, {
   path: "/edit-student/:studentID",
   name: "EditStudent",
   component: EditStudent,
   meta: {
     requiresAuth: true
-  }
+  },
+  props: true
 }, {
   path: "/add-student",
   name: "AddStudent",

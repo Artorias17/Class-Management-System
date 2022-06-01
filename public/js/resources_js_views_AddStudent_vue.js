@@ -165,22 +165,27 @@ __webpack_require__.r(__webpack_exports__);
     message: String,
     background: String
   },
-  emits: ["isVisible"],
+  data: function data() {
+    return {
+      toast: undefined
+    };
+  },
+  // Had a really, really hard time figuring out why toast.show() doesn't show the toast
+  // after the dom has mounted  via watchers or computed props.
+  // After long ordeal came to the solution to just re-render the toast component.
+  // This is done by changing the component's key special attribute on where it is being used.
+  // https://vuejs.org/api/built-in-special-attributes.html#key
   mounted: function mounted() {
-    if (this.message) this.display();
+    //getOrCreateInstance -> because Toast was already called via constructor in data
+    this.toast = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(this.$refs.toastElement, {
+      autohide: true,
+      delay: 2500,
+      animation: true
+    });
+    if (this.message) this.toast.show();
   },
-  // Watching is lazy. It won't work at initial prop pass, however for subsequent changes it will.
-  watch: {
-    message: function message(newToast) {
-      if (newToast) this.display();
-    }
-  },
-  methods: {
-    display: function display() {
-      // The Dom needs to be mounted first before this object can be created
-      var toaster = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(this.$refs.toastElement);
-      toaster.show();
-    }
+  beforeUnmount: function beforeUnmount() {
+    this.toast.dispose();
   }
 });
 
@@ -241,7 +246,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         inputFieldValue: ""
       }],
       toastMsg: "",
-      toastBG: ""
+      toastBG: "",
+      failedAttempts: 0
     };
   },
   methods: {
@@ -262,8 +268,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   mobile_number: _this.arr[3].inputFieldValue
                 }).then(function (response) {
                   return response;
-                })["catch"](function (response) {
-                  return response;
+                })["catch"](function (err) {
+                  return err.response;
                 });
 
               case 2:
@@ -284,14 +290,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                _context.next = 10;
+                _context.next = 11;
                 break;
 
               case 8:
-                _this.toastMsg = reply;
+                _this.toastMsg = reply.data.message;
                 _this.toastBG = "bg-danger";
+                _this.failedAttempts++;
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -580,7 +587,7 @@ var _hoisted_2 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     ref: "toastElement",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["toast end-0 position-absolute m-4 show", $props.background]),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["toast end-0 position-absolute m-4", $props.background]),
     role: "alert",
     "aria-live": "assertive",
     "aria-atomic": "true"
@@ -628,7 +635,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmitForm: $options.addData
   }, null, 8
   /* PROPS */
-  , ["form-fields", "onSubmitForm"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ToastNotification)]);
+  , ["form-fields", "onSubmitForm"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ToastNotification, {
+    background: $data.toastBG,
+    message: $data.toastMsg,
+    key: $data.failedAttempts
+  }, null, 8
+  /* PROPS */
+  , ["background", "message"]))]);
 }
 
 /***/ }),
@@ -5911,7 +5924,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\r\n    word-break: keep-all;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
