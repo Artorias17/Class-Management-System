@@ -2171,7 +2171,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.student-image[data-v-b9bc2c0a] {\n    width: 128px !important;\n}\n.student-card[data-v-b9bc2c0a] {\n    width: 20rem !important;\n}\n.pay-status[data-v-b9bc2c0a] {\n    transition: 0.2s ease-in-out;\n}\n.pay-status[data-v-b9bc2c0a]:hover {\n    outline: white 1px solid;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.student-image[data-v-b9bc2c0a] {\r\n    width: 128px !important;\n}\n.student-card[data-v-b9bc2c0a] {\r\n    width: 20rem !important;\n}\n.pay-status[data-v-b9bc2c0a] {\r\n    transition: 0.2s ease-in-out;\n}\n.pay-status[data-v-b9bc2c0a]:hover {\r\n    outline: white 1px solid;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2217,7 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\r\n    word-break: keep-all;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
