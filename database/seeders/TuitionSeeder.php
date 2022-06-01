@@ -19,8 +19,8 @@ class TuitionSeeder extends Seeder
         $tuitions = [
             [
                 "user_id" => "2",
-                "created_at" => now()->subMonth(1),
-                "updated_at" => now()->subMonth(1)
+                "created_at" => now()->subMonth(2),
+                "updated_at" => now()->subMonth(2)
             ],
             [
                 "user_id" => "3",
@@ -29,14 +29,29 @@ class TuitionSeeder extends Seeder
             ],
             [
                 "user_id" => "2",
-                "created_at" => now()->subMonth(2),
-                "updated_at" => now()->subMonth(2)
+                "created_at" => now()->subMonth(1),
+                "updated_at" => now()->subMonth(1)
             ],
             [
                 "user_id" => "4",
                 "created_at" => now(),
                 "updated_at" => now()
-            ]
+            ],
+            [
+                "user_id" => "5",
+                "created_at" => now()->subMonth(1),
+                "updated_at" => now()->subMonth(1)
+            ],
+            [
+                "user_id" => "6",
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "user_id" => "6",
+                "created_at" => now()->subMonth(1),
+                "updated_at" => now()->subMonth(1)
+            ],
         ];
 
         foreach ($tuitions as $t){

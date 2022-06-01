@@ -21,46 +21,46 @@ class UserSeeder extends Seeder
         $users = [
             [
 
-                'first_name'  => "Admin",
-                "last_name" => "Mentor",
-                "mobile_number" => "52471527324",
+                'first_name'  => "Richie",
+                "last_name" => "Rich",
+                "mobile_number" => "01722222222",
                 "is_teacher" => true,
-                'email' => "example@example.com",
-                'email_verified_at' => now(),
+                'email' => "rr@admin.com",
+                'email_verified_at' => now()->subMonth(1),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
             ],
             [
 
-                'first_name'  => "Student",
-                "last_name" => "One",
-                "mobile_number" => "12471527324",
+                'first_name'  => "Victor",
+                "last_name" => "Ross",
+                "mobile_number" => "01401010101",
                 "is_teacher" => false,
-                'email' => "examplestudent1@example.com",
-                'email_verified_at' => now(),
+                'email' => "vic@zmail.com",
+                'email_verified_at' => now()->subMonth(2),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
                 'created_at' => now()->subMonth(2)
             ],
             [
 
-                'first_name'  => "Student",
-                "last_name" => "Two",
-                "mobile_number" => "22471527324",
+                'first_name'  => "Bridget",
+                "last_name" => "Parker",
+                "mobile_number" => "01345678944",
                 "is_teacher" => false,
-                'email' => "examplestudent2@example.com",
-                'email_verified_at' => now(),
+                'email' => "parker@zmail.com",
+                'email_verified_at' => now()->subMonth(5),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
                 'created_at' => now()->subMonth(5)
             ],
             [
 
-                'first_name'  => "Student",
-                "last_name" => "Three",
-                "mobile_number" => "24371527324",
+                'first_name'  => "Randy",
+                "last_name" => "Jones",
+                "mobile_number" => "01312312312",
                 "is_teacher" => false,
-                'email' => "examplestudent3@example.com",
+                'email' => "randy.jones@yippe.com",
                 'email_verified_at' => now(),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -68,25 +68,27 @@ class UserSeeder extends Seeder
             ],
             [
 
-                'first_name'  => "Student",
-                "last_name" => "Four",
-                "mobile_number" => "22461527324",
+                'first_name'  => "Valerie",
+                "last_name" => "Hawkins",
+                "mobile_number" => "01122448866",
                 "is_teacher" => false,
-                'email' => "examplestudent4@example.com",
-                'email_verified_at' => now(),
+                'email' => "v123@example.com",
+                'email_verified_at' => now()->subMonth(1),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
+                'created_at' => now()->subMonth(1)
             ],
             [
 
-                'first_name'  => "Student",
-                "last_name" => "Five",
-                "mobile_number" => "22471525324",
+                'first_name'  => "Levi",
+                "last_name" => "Bryant",
+                "mobile_number" => "01487220020",
                 "is_teacher" => false,
-                'email' => "examplestudent5@example.com",
+                'email' => "lbryant@neutron.com",
                 'email_verified_at' => now(),
                 'password' => Hash::make("password"),
                 'remember_token' => Str::random(10),
+                'created_at' => now()->subMonth(1)
             ]
         ];
 
