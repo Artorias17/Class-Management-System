@@ -24,5 +24,6 @@ For recreating the setup
   * `php artisan route:list` for seeing all the available routes
 
 
-
+So far,
+Some of the basic CRUD operation works.
 
