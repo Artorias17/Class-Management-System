@@ -30,5 +30,9 @@ For recreating the setup
 
 
 So far,
-Some basic CRUD operation works.
+* For logging in -> email -> rr@admin.com password -> password
+
+* Some basic CRUD operation works.
+
+* Role based authentication hasn't been applied and registration of new teachers hasn't been applied.
 
