@@ -311,16 +311,15 @@ var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_5 = {
-  "class": "collapse navbar-collapse row mt-4 my-lg-0",
+  "class": "collapse navbar-collapse",
   id: "navbarSupportedContent"
 };
 var _hoisted_6 = {
-  key: 0,
-  "class": "col-6 d-flex justify-content-end justify-content-lg-start align-items-center"
+  "class": "navbar-nav w-100 row"
 };
 var _hoisted_7 = {
-  key: 1,
-  "class": "col-6 d-flex align-items-center justify-content-start justify-content-lg-end"
+  key: 0,
+  "class": "nav-item my-2 col-9 ms-4 m-lg-0"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -337,8 +336,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [$props.showAddStudent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-    "class": "mx-3 px-3 py-2 fw-bold",
+  }), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [$props.showAddStudent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+    "class": "mx-3 px-3 py-2 fw-bold btn-outline-dark",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$router.push('/add-student');
     }),
@@ -348,16 +347,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "alternate-text": 'Add Student'
   }, null, 8
   /* PROPS */
-  , ["image-source"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.showLogout ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+  , ["image-source"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.showLogout ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+    key: 1,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["nav-item my-2 ms-4 d-lg-flex justify-content-end m-lg-0", $props.showAddStudent ? 'col-3' : 'col-12'])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     onClick: $options.logout,
-    "class": "mx-3 px-3 py-2 fw-bold",
+    "class": "mx-3 px-3 py-2 fw-bold btn-outline-dark",
     "image-source": "logout.svg",
     "button-text": "Logout",
     "button-color": "bg-danger",
     "alternate-text": "Logout"
   }, null, 8
   /* PROPS */
-  , ["onClick", "image-source"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
+  , ["onClick", "image-source"])], 2
+  /* CLASS */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]);
 }
 
 /***/ }),
@@ -491,7 +495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\r\n    word-break: keep-all;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
