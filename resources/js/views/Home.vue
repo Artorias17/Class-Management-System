@@ -1,8 +1,8 @@
 <template>
     <div>
         <Navbar show-logout show-add-student/>
-        <CardContainer />
-        <ToastNotification :message="msg" :background="background"/>
+        <CardContainer @toastMsg="bringToast"/>
+        <ToastNotification :key="newToast" :message="msgData" :background="msgBG"/>
     </div>
 </template>
 
@@ -17,8 +17,21 @@ export default {
     props: {
         msg: String,
         background: String,
+    },
+    data(){
+        return {
+            newToast: 0,
+            msgData: this.msg,
+            msgBG: this.background
+        }
+    },
+    methods: {
+        bringToast(data) {
+            this.msgData = data[0]
+            this.msgBG = data[1]
+            this.newToast++;
+        }
     }
-
 }
 </script>
 

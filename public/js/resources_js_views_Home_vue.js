@@ -86,6 +86,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Button: _Button__WEBPACK_IMPORTED_MODULE_1__["default"],
     FormInput: _FormInput__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  emits: ["toastMsg"],
   data: function data() {
     return {
       cardContent: [],
@@ -141,9 +142,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.cardContent.splice(index, 1);
 
                   _this2.cardsAvailable--;
-                  alert("Deleted");
+
+                  _this2.$emit("toastMsg", ["Student deleted successfully.", "bg-success"]);
                 })["catch"](function (error) {
-                  return alert(error.response.data["message"]);
+                  return _this2.$emit("toastMsg", [error.response.data["message"], "bg-danger"]);
                 });
 
               case 2:
@@ -344,6 +346,20 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     msg: String,
     background: String
+  },
+  data: function data() {
+    return {
+      newToast: 0,
+      msgData: this.msg,
+      msgBG: this.background
+    };
+  },
+  methods: {
+    bringToast: function bringToast(data) {
+      this.msgData = data[0];
+      this.msgBG = data[1];
+      this.newToast++;
+    }
   }
 });
 
@@ -844,12 +860,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
     "show-logout": "",
     "show-add-student": ""
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CardContainer), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ToastNotification, {
-    message: $props.msg,
-    background: $props.background
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CardContainer, {
+    onToastMsg: $options.bringToast
   }, null, 8
   /* PROPS */
-  , ["message", "background"])]);
+  , ["onToastMsg"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ToastNotification, {
+    key: $data.newToast,
+    message: $data.msgData,
+    background: $data.msgBG
+  }, null, 8
+  /* PROPS */
+  , ["message", "background"]))]);
 }
 
 /***/ }),

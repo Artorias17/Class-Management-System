@@ -32,6 +32,7 @@ import FormInput from "./FormInput";
 export default {
     name: "CardContainer",
     components: {Card, Button, FormInput},
+    emits: ["toastMsg"],
     data() {
         return {
             cardContent: [],
@@ -64,9 +65,9 @@ export default {
                 .then(() => {
                     this.cardContent.splice(index, 1)
                     this.cardsAvailable--;
-                    alert("Deleted")
+                    this.$emit("toastMsg", ["Student deleted successfully.", "bg-success"])
                 })
-                .catch(error => alert(error.response.data["message"]))
+                .catch(error => this.$emit("toastMsg", [error.response.data["message"], "bg-danger"]))
         }
     },
 
