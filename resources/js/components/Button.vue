@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style scoped>
+button {
+    transition: 0.2s ease-in-out;
+}
+
 img{
     width: 1.2rem;
 }

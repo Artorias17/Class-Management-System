@@ -578,7 +578,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   }), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [$props.showAddStudent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-    "class": "mx-3 px-3 py-2 fw-bold btn-outline-dark",
+    "class": "mx-3 px-3 py-2 fw-bold",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$router.push('/add-student');
     }),
@@ -593,7 +593,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["nav-item my-2 ms-4 d-lg-flex justify-content-end m-lg-0", $props.showAddStudent ? 'col-3' : 'col-12'])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     onClick: $options.logout,
-    "class": "mx-3 px-3 py-2 fw-bold btn-outline-dark",
+    "class": "mx-3 px-3 py-2 fw-bold",
     "image-source": "logout.svg",
     "button-text": "Logout",
     "button-color": "bg-danger",
@@ -727,7 +727,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-e0422746]{\n    width: 1.2rem;\n}\nspan[data-v-e0422746] {\n    white-space: nowrap\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbutton[data-v-e0422746] {\n    transition: 0.2s ease-in-out;\n}\nimg[data-v-e0422746]{\n    width: 1.2rem;\n}\nspan[data-v-e0422746] {\n    white-space: nowrap\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -750,7 +750,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b] {\n    word-break: keep-all;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nButton[data-v-6dde423b]:hover {\n    color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
