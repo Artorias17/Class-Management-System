@@ -2,9 +2,6 @@
 echo 'Running composer'
 composer install --no-dev --working-dir=/var/www/html
 
-echo "Running Artisan App Key Generation"
-php artisan key:generate
-
 echo 'Caching config...'
 php artisan config:cache
 
