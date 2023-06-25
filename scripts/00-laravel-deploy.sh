@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 echo 'Running composer'
-composer update
 composer install --no-dev --working-dir=/var/www/html
 
 echo "Running Artisan App Key Generation"
