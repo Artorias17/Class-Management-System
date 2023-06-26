@@ -10,7 +10,9 @@ echo 'Caching routes...'
 php artisan route:cache
 
 if [[ "$SEED_DB" == "1" || "$SEED_DB" == "true" ]]; then
+    echo 'Running migrations with seeding...'
     php artisan migrate:refresh --seed --force
 else
+    echo 'Running migrations...'
     php artisan migrate --force
 fi
