@@ -48,3 +48,4 @@ services:
     tty: true
     networks:
       - cms
+    command: npm run watch
