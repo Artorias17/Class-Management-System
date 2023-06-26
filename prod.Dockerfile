@@ -1,7 +1,18 @@
 FROM node:lts-slim as node
+
 WORKDIR /home/app/cms
+
 COPY . .
+
+# Removing dev scripts because the start.sh from richarvey/nginx-php-fpm:2.1.2
+# executes all scripts under scripts folder.
+# See the start.sh to understand how everything works
+# https://github.com/richarvey/nginx-php-fpm/blob/main/scripts/start.sh
+# See also the Dockerfile
+# https://github.com/richarvey/nginx-php-fpm/blob/main/Dockerfile
+
 RUN apt-get update -y  \
+    && rm -rf scripts/dev.entrypoint.sh \
     && npm i \
     && npm run prod
 
