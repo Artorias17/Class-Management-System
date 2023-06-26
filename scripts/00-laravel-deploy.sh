@@ -9,6 +9,10 @@ php artisan config:cache
 echo 'Caching routes...'
 php artisan route:cache
 
-echo 'Running migrations with seeding...'
-php artisan migrate:refresh --seed
-
+if [[ $SEED_DB ]]; then
+    echo 'Running migrations with seeding...'
+    php artisan migrate:refresh --seed --force
+else
+    echo 'Running migrations...'
+    php artisan migrate --force
+fi
