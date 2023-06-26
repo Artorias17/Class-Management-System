@@ -1,0 +1,50 @@
+version: "3.8"
+
+# Docker network that these services should be within. By default, all services in yml are under one network,
+# and we don't need to specify. However, here, we are specifying for personal preference.
+networks:
+  cms:
+
+services:
+  # PHP Service
+  # Custom service which is configured in dev.Dockerfile under target php
+  php:
+    networks:
+      - cms
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+      target: php
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    tty: true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+
+  # Database Service
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - ./database/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - cms
+
+  # Node Service
+  node:
+    image: node:lts-slim
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    tty: true
+    networks:
+      - cms

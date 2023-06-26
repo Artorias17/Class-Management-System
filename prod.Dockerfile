@@ -1,6 +1,13 @@
-FROM richarvey/nginx-php-fpm:2.1.2
-
+FROM node:lts-slim as node
+WORKDIR /home/app/cms
 COPY . .
+RUN apt-get update -y  \
+    && npm i \
+    && npm run prod
+
+FROM richarvey/nginx-php-fpm:2.1.2 as server
+
+COPY --from=node /home/app/cms .
 
 # Image config
 ENV SKIP_COMPOSER 1
