@@ -1,0 +1,42 @@
+{
+    "name": "CMS",
+    "dockerComposeFile": "../compose.yml",
+    "service": "php",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "xdebug.php-debug",
+                "bmewburn.vscode-intelephense-client",
+                "dbaeumer.vscode-eslint",
+                "vue.volar",
+                "mikestead.dotenv",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-pg",
+                "eamodio.gitlens",
+                "formulahendry.auto-complete-tag",
+                "esbenp.prettier-vscode",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "sqltools.connections": [
+                    {
+                        "name": "Dev Database",
+                        "driver": "PostgreSQL",
+                        "server": "${env:PGHOST}",
+                        "port": "${env:PGPORT}",
+                        "database": "${env:PGDATABASE}",
+                        "username": "${env:PGUSER}",
+                        "password": "${env:PGPASSWORD}"
+                    }
+                ]
+            }
+        }
+    },
+    "forwardPorts": [8000, 5432],
+    "postCreateCommand": "composer install --no-interaction && npm install && php artisan key:generate && php artisan migrate --seed && php artisan optimize:clear",
+    "postStartCommand": "echo 'Start the PHP Server by running\nphp artisan serve --host=0.0.0.0 --env=.env",
+    "remoteUser": "root",
+    "overrideCommand": false
+}
