@@ -1,38 +1,109 @@
-<div style="display: flex; align-items: center; justify-content: center">
-        <img src="database_schema.svg" width="512" alt="Database Schema">
-    </a>
-</div>
+## Deployment Status
+
+### Hosting Platform: Render
+
+![Status](https://img.shields.io/website?url=https%3A%2F%2Fclass-management-system.onrender.com%2F&up_message=Deployed&up_color=brightgreen&down_message=Offline&down_color=red&style=for-the-badge&logo=render&label=Deployment_Status&cacheSeconds=3600)
+
+## Overview
+
+The Class Management System is a comprehensive educational management application built with modern web technologies:
+
+* **Frontend**: Vue.js with Vue Router and Bootstrap for responsive UI
+* **Backend**: Laravel RESTful API with Laravel Sanctum for authentication
+* **Database**: Structure follows the schema diagram above
+![Database Schema](database_schema.svg)
 
 
+## Features
 
-## Class Management System
+- [x] Basic CRUD operations
+- [x] Authentication system
+- [ ] Role-based access control
+- [ ] Teacher registration
 
-This Class Management System is built using Vue JS with Vue Router and Bootstrap
-as the front-end SPA with Laravel as the backend RESTful API service provider along 
-with Laravel Sanctum for authentication.
+## Development Environment
 
-The Class Management System utilizes the provided database relation schema.
+### Prerequisites
+
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+### Setup
+
+For consistent development environment across all machines, this project supports development with Visual Studio Code's devcontainer.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Artorias17/Class-Management-System.git
+   ```
+
+2. Open the project in VS Code:
+   ```bash
+   code Class-Management-System
+   ```
+
+3. When prompted, click "Reopen in Container" or use the command palette (F1) to select "Remote-Containers: Reopen in Container"
+
+4. The devcontainer will automatically set up the environment, including:
+   - PHP and required extensions
+   - PostgreSQL Database Server
+   - Composer
+   - Node.js and npm
+   - All project dependencies
+
+5. Once inside the container, use the commands below to get started!
+
+## Useful Commands
+
+### Route Management
+
+```bash
+# Generate unique app key
+php artisan key:generate
+
+# Clear route cache
+php artisan route:clear
+
+# Regenerate and optimize routes
+php artisan optimize
+
+# Combination of the two commands above
+php artisan optimize:clear
+
+# List all available routes
+php artisan route:list
+
+# Run outstanding database migrations
+php artisan migrate
+
+# Run outstanding database migrations with seeding
+php artisan migrate --seed
+
+# Reset database migrations and seed from scratch
+php artisan migrate:refresh --seed
+```
+
+### Development Workflow
 
 
-For recreating the setup
-* Before starting make sure composer is installed in the system as well php.
-* First in the terminal git clone this project and cd into this project directory.
-* Then run `composer install`
-* Then run `cp .env.example .env` and add your necessary database credentials in .env file. For instance, first create a database in your favorite database software.
-* Then run `php artisan key:generate`
-* Then install npm packages by running `npm install`
-* In order to start the server run `php artisan serve` and go to link provided by the command.
-* The database migrations and seeds are already present, to fill the database with test data run `php artisan migrate:refresh --seed`
-* For routes use the commands -
-  * `php artisan route:clear` for clearing route cache
-  * `php artisan optimize` for regenerating and optimizing routes
-  * `php artisan route:list` for seeing all the available routes
+```bash
+# In one terminal run the PHP server
+php artisan serve --host=0.0.0.0 --env=.env 
 
+# In another terminal run webpack server by the following command:
+# Watch for changes and hot reload
+npm run watch
 
-So far,
-* For logging in -> email -> rr@admin.com password -> password
+# Build for production
+npm run prod
+```
 
-* Some basic CRUD operation works.
+## Default Login Credentials
 
-* Role based authentication hasn't been applied and registration of new teachers hasn't been applied.
+- **Email**: rr@admin.com
+- **Password**: password
 
+## License
+
+[MIT](LICENSE)
