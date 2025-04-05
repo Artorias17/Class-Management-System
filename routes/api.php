@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Public API Routes
+Route::get("health-check", \App\Http\Controllers\api\HealthCheckController::class);
 Route::post("login", [\App\Http\Controllers\api\LoginController::class, "login"]);
 Route::get("user-status", [\App\Http\Controllers\api\LoginController::class, "check"]);
 

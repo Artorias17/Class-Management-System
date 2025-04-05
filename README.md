@@ -2,7 +2,7 @@
 
 ### Hosting Platform: Render
 
-![Status](https://img.shields.io/website?url=https%3A%2F%2Fclass-management-system.onrender.com%2F&up_message=Deployed&up_color=brightgreen&down_message=Offline&down_color=red&style=for-the-badge&logo=render&label=Deployment_Status&cacheSeconds=3600)
+![Status](https://img.shields.io/website?url=https%3A%2F%2Fclass-management-system.onrender.com%2Fapi%2Fhealth-check&up_message=Deployed&up_color=brightgreen&down_message=Offline&down_color=red&style=for-the-badge&logo=render&label=Deployment_Status&cacheSeconds=3600)
 
 ## Overview
 
@@ -18,8 +18,8 @@ The Class Management System is a comprehensive educational management applicatio
 
 - [x] Basic CRUD operations
 - [x] Authentication system
-- [ ] Role-based access control
-- [ ] Teacher registration
+- [x] Role-based access control
+- [x] Teacher registration
 
 ## Development Environment
 
